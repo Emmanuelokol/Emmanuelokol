@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: HealthApp
-
+        working-directory: hommat-health
 
     steps:
       - name: Checkout Code
@@ -26,11 +25,11 @@ jobs:
       - name: Install Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Build APK
-        run: gradle build
-
       - name: Grant permission
         run: chmod +x gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
 
       - name: Build APK
         run: ./gradlew assembleDebug
