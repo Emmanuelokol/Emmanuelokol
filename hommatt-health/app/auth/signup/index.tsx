@@ -11,17 +11,17 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "../../../lib/supabase";
 import {
   phoneStepSchema,
   infoStepSchema,
   conditionsStepSchema,
-} from "@/lib/validations/signup";
+} from "../../../lib/validations/signup";
 import {
   HEALTH_CONDITIONS,
   UGANDA_CITIES,
-} from "@/lib/constants/health-conditions";
-import type { SignupProfileInsert } from "@/lib/supabase/types";
+} from "../../../lib/constants/health-conditions";
+import type { SignupProfileInsert } from "../../../lib/supabase/types";
 
 const STEPS = ["Phone", "About You", "Health"] as const;
 
