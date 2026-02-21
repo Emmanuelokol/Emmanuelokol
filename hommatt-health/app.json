@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Hommatt Health",
-    "slug": "hommat-health",
+    "slug": "hommatt-health",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,8 +9,6 @@
     "newArchEnabled": true,
     "scheme": "hommatt-health",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#F9FAFB"
     },
     "assetBundlePatterns": [
@@ -24,10 +22,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F9FAFB"
       },
-      "package": "com.hommatt.health",
-      "jsEngine": "jsc"
+      "package": "com.hommatt.health"
     },
-    "jsEngine": "jsc",
     "plugins": [
       "expo-router"
     ],
