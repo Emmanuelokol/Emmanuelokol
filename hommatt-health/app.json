@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Hommatt Health",
-    "slug": "hommatt-health",
+    "slug": "hommat-health",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
