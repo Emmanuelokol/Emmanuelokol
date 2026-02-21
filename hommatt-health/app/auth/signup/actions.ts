@@ -1,5 +1,3 @@
-"use server";
-
 import { signupSchema, type SignupData } from "@/lib/validations/signup";
 
 interface SubmitResult {
