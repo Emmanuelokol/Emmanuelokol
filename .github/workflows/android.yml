@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
+    defaults:
+      run:
         working-directory: hommatt-health/android
 
     steps:
@@ -22,8 +24,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Install Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Grant permission
         run: chmod +x gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
 
       - name: Build APK
         run: ./gradlew assembleDebug
