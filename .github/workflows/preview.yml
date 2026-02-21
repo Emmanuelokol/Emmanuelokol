@@ -1,11 +1,13 @@
 name: Preview on Phone
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      CI: 1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,10 +25,20 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
+        working-directory: hommatt-health
         run: npm install
-        working-directory: hommatt-health
 
-      - name: Publish to Expo Go
-        run: npx eas-cli update --branch preview --platform android --message "New update" --no-bytecode
+      - name: Make Hermes compiler executable
         working-directory: hommatt-health
+        run: |
+          HERMESC=$(find node_modules/react-native -name "hermesc" -type f 2>/dev/null | head -1)
+          if [ -n "$HERMESC" ]; then
+            chmod +x "$HERMESC"
+            echo "Found and made hermesc executable at: $HERMESC"
+          else
+            echo "hermesc binary not found in node_modules"
+          fi
 
+      - name: Publish update to preview
+        working-directory: hommatt-health
+        run: eas update --branch preview --platform android --message "New update" --no-bytecode
