@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: homatt-health
+    defaults:
+      run:
+        working-directory: hommatt-health/android
 
     steps:
       - name: Checkout Code
