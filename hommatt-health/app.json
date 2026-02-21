@@ -23,9 +23,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.hommatt.health"
+      "package": "com.hommatt.health",
+      "jsEngine": "jsc"
     },
-    
     "plugins": [
       "expo-router"
     ],
