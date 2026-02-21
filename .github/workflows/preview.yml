@@ -27,6 +27,6 @@ jobs:
         working-directory: hommatt-health
 
       - name: Publish to Expo Go
-        run: npx eas-cli update --branch preview --platform android --message "New update"
+        run: npx eas-cli update --branch preview --platform android --message "New update" --no-bytecode
         working-directory: hommatt-health
 
