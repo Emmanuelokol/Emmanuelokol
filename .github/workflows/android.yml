@@ -8,11 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-    defaults:
-      run:
-        working-directory: hommatt-health/android
 
     steps:
       - name: Checkout Code
@@ -24,14 +19,19 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Gradle
-        uses: gradle/gradle-build-action@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: hommatt-health
+        run: npm install
 
       - name: Grant permission
+        working-directory: hommatt-health/android
         run: chmod +x gradlew
 
       - name: Build APK
-        run: ./gradlew assembleDebug
-
-      - name: Build APK
+        working-directory: hommatt-health/android
         run: ./gradlew assembleDebug
