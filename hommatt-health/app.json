@@ -25,7 +25,9 @@
         "backgroundColor": "#F9FAFB"
       },
       "package": "com.hommatt.health"
+      "jsEngine": "jsc"
     },
+    "jsEngine": "jsc",
     "plugins": [
       "expo-router"
     ],
