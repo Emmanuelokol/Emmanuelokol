@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Hommatt Health",
+    "slug": "hommatt-health",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.hommatt.health"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
