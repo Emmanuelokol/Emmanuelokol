@@ -24,9 +24,17 @@
       },
       "package": "com.hommatt.health"
     },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/icon.png"
+    },
     "plugins": [
       "expo-router"
     ],
+    "experiments": {
+      "baseUrl": "/Emmanuelokol"
+    },
     "extra": {
       "eas": {
         "projectId": "882f73af-e1c8-4b6e-b051-c2d7d63c987e"

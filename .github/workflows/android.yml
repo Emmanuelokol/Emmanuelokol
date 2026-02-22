@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: hommatt-health/package-lock.json
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -30,8 +32,17 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Align Expo dependency versions
+        run: npx expo install --fix
+
       - name: Grant Gradle permission
         run: chmod +x android/gradlew
 
       - name: Build APK
         run: android/gradlew -p android assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: hommatt-health-debug
+          path: hommatt-health/android/app/build/outputs/apk/debug/app-debug.apk
