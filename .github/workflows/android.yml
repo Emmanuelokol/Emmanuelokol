@@ -8,30 +8,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hommatt-health
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: Install npm dependencies
+        run: npm ci
 
-      - name: Install dependencies
-        working-directory: hommatt-health
-        run: npm install
-
-      - name: Grant permission
-        working-directory: hommatt-health/android
-        run: chmod +x gradlew
+      - name: Grant Gradle permission
+        run: chmod +x android/gradlew
 
       - name: Build APK
-        working-directory: hommatt-health/android
-        run: ./gradlew assembleDebug
+        run: android/gradlew -p android assembleDebug

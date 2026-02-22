@@ -31,12 +31,14 @@ jobs:
       - name: Make Hermes compiler executable
         working-directory: hommatt-health
         run: |
-          HERMESC=$(find node_modules/react-native -name "hermesc" -type f 2>/dev/null | head -1)
+          # RN 0.84+ moved hermesc from react-native/sdks/hermesc/ to the hermes-compiler package
+          HERMESC=$(find node_modules/hermes-compiler node_modules/react-native -name "hermesc" -type f 2>/dev/null | head -1)
           if [ -n "$HERMESC" ]; then
             chmod +x "$HERMESC"
             echo "Found and made hermesc executable at: $HERMESC"
           else
-            echo "hermesc binary not found in node_modules"
+            echo "::error::hermesc binary not found in node_modules"
+            exit 1
           fi
 
       - name: Publish update to preview
