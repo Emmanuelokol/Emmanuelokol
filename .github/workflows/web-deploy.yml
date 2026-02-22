@@ -37,6 +37,16 @@ jobs:
       - name: Align Expo dependency versions
         run: npx expo install --fix
 
+      - name: Set baseUrl for GitHub Pages
+        run: |
+          node -e "
+            const fs = require('fs');
+            const cfg = JSON.parse(fs.readFileSync('app.json','utf8'));
+            cfg.expo.experiments = cfg.expo.experiments || {};
+            cfg.expo.experiments.baseUrl = '/Emmanuelokol';
+            fs.writeFileSync('app.json', JSON.stringify(cfg, null, 2));
+          "
+
       - name: Export web build
         run: npx expo export --platform web
 
