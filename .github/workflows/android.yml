@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: homatt-health
+        working-directory: hommatt-health
 
     steps:
       - name: Checkout Code
@@ -27,9 +27,6 @@ jobs:
 
       - name: Grant permission
         run: chmod +x gradlew
-
-      - name: Build APK
-        run: ./gradlew assembleDebug
 
       - name: Build APK
         run: ./gradlew assembleDebug
