@@ -1,3 +1,5 @@
+console.log("[health-conditions] Module loading...");
+
 /** Common conditions shown as a clickable multi-select list during signup. */
 export const HEALTH_CONDITIONS = [
   "Diabetes",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,19 +11,47 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
-import { supabase } from "../../../lib/supabase";
-import {
-  phoneStepSchema,
-  infoStepSchema,
-  conditionsStepSchema,
-} from "../../../lib/validations/signup";
-import {
-  HEALTH_CONDITIONS,
-  UGANDA_CITIES,
-} from "../../../lib/constants/health-conditions";
+
+console.log("[SignupScreen] Module loading...");
+
+let supabase: typeof import("../../../lib/supabase").supabase;
+let phoneStepSchema: typeof import("../../../lib/validations/signup").phoneStepSchema;
+let infoStepSchema: typeof import("../../../lib/validations/signup").infoStepSchema;
+let conditionsStepSchema: typeof import("../../../lib/validations/signup").conditionsStepSchema;
+let HEALTH_CONDITIONS: typeof import("../../../lib/constants/health-conditions").HEALTH_CONDITIONS;
+let UGANDA_CITIES: typeof import("../../../lib/constants/health-conditions").UGANDA_CITIES;
+
+try {
+  supabase = require("../../../lib/supabase").supabase;
+  console.log("[SignupScreen] supabase imported OK");
+} catch (e: unknown) {
+  console.error("[SignupScreen] FAILED to import supabase:", e instanceof Error ? e.message : e);
+}
+
+try {
+  const validations = require("../../../lib/validations/signup");
+  phoneStepSchema = validations.phoneStepSchema;
+  infoStepSchema = validations.infoStepSchema;
+  conditionsStepSchema = validations.conditionsStepSchema;
+  console.log("[SignupScreen] validation schemas imported OK");
+} catch (e: unknown) {
+  console.error("[SignupScreen] FAILED to import validations:", e instanceof Error ? e.message : e);
+}
+
+try {
+  const constants = require("../../../lib/constants/health-conditions");
+  HEALTH_CONDITIONS = constants.HEALTH_CONDITIONS;
+  UGANDA_CITIES = constants.UGANDA_CITIES;
+  console.log("[SignupScreen] constants imported OK");
+} catch (e: unknown) {
+  console.error("[SignupScreen] FAILED to import constants:", e instanceof Error ? e.message : e);
+}
+
 import type { SignupProfileInsert } from "../../../lib/supabase/types";
 
 const STEPS = ["Phone", "About You", "Health"] as const;
+
+console.log("[SignupScreen] Module init complete");
 
 function calculateAge(dob: string): number {
   const birth = new Date(dob);
@@ -37,6 +65,12 @@ function calculateAge(dob: string): number {
 }
 
 export default function SignupScreen() {
+  useEffect(() => {
+    console.log("[SignupScreen] Component mounted");
+  }, []);
+
+  console.log("[SignupScreen] Render");
+
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});

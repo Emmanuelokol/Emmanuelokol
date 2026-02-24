@@ -1,8 +1,17 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { useRouter } from "expo-router";
+
+console.log("[HomeScreen] Module loaded — platform:", Platform.OS);
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("[HomeScreen] Component mounted and visible");
+  }, []);
+
+  console.log("[HomeScreen] Render");
 
   return (
     <View style={styles.container}>
@@ -40,7 +49,10 @@ export default function HomeScreen() {
       <View style={styles.actions}>
         <TouchableOpacity
           style={styles.signupButton}
-          onPress={() => router.push("/auth/signup")}
+          onPress={() => {
+            console.log("[HomeScreen] Navigating to /auth/signup");
+            router.push("/auth/signup");
+          }}
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel="Create a new account"
@@ -51,7 +63,7 @@ export default function HomeScreen() {
         <TouchableOpacity
           style={styles.loginButton}
           onPress={() => {
-            /* TODO: navigate to login */
+            console.log("[HomeScreen] Login button pressed (not yet implemented)");
           }}
           activeOpacity={0.7}
           accessibilityRole="button"
